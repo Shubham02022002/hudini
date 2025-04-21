@@ -4,8 +4,11 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import gxImg from '../assets/gx-1.jpg';
 import connectImg from '../assets/connect-1.jpg';
 import elevateImg from '../assets/elevate-1.jpg';
+import { useAtomValue } from 'jotai';
+import { themeAtom } from '../jotai/Atoms';
 
 const Products = () => {
+    const darkTheme = useAtomValue(themeAtom);
     const products = [
         {
             image: gxImg,
@@ -30,7 +33,7 @@ const Products = () => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: '#121212',
+                backgroundColor: darkTheme ? '#121212' : 'white',
                 color: '#f1f1f1'
             }}
         >
@@ -38,7 +41,7 @@ const Products = () => {
                 Products
             </Typography>
 
-            <Box sx={{ display: 'flex', gap: 6, flexWrap: 'wrap', justifyContent: 'center', overflow:"hidden", marginTop:'20px' }}>
+            <Box sx={{ display: 'flex', gap: 6, flexWrap: 'wrap', justifyContent: 'center', overflow: "hidden", marginTop: '20px' }}>
                 {products.map((product, idx) => (
                     <Box key={idx} sx={{ width: 350, transition: 'transform 0.3s ease', '&:hover': { transform: 'scale(1.01)' } }}>
                         <img src={product.image} alt={`product-${idx}`} width="100%" style={{ borderRadius: '10px' }} />

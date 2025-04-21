@@ -1,5 +1,21 @@
 * {
     margin: 0px;
     overflow-x: hidden;
-    color: white;
+    /* color: white; */
+}
+
+/* index.css */
+
+:root {
+    --text-color: #000000;
+    --button-border-color: #000000;
+    --button-text-color: #000000;
+    --button-hover-bg: rgba(0, 0, 0, 0.05);
+}
+
+[dark-theme="dark"] {
+    --text-color: #ffffff;
+    --button-border-color: #ffffff;
+    --button-text-color: #ffffff;
+    --button-hover-bg: rgba(255, 255, 255, 0.1);
 }

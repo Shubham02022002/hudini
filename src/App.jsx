@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import bgImg from './assets/gradient.png';
 import Hero from './components/Hero';
@@ -10,14 +10,30 @@ import Partners from './components/Partners';
 import Magic from './components/Magic';
 import JoinUs from './components/JoinUs';
 import Footer from './components/Footer';
+import { useAtomValue } from "jotai";
+import { themeAtom } from './jotai/Atoms';
+
 const App = () => {
+  const darkTheme = useAtomValue(themeAtom);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    darkTheme
+      ? root.setAttribute('dark-theme', 'dark')
+      : root.removeAttribute('dark-theme');
+  }, [darkTheme]);
+
+  const containerStyle = {
+    backgroundImage: `url(${bgImg})`,
+    backgroundColor: darkTheme ? '#212121' : 'white',
+    height: "100vh",
+    width: "100vw",
+    color: darkTheme ? 'white' : 'black',
+    overflowX: 'hidden',
+  };
+
   return (
-    <div style={{
-      backgroundImage: `url(${bgImg})`,
-      backgroundColor: "#212121",
-      height: "100vh",
-      width: "100vw"
-    }}>
+    <div style={containerStyle}>
       <Navbar />
       <Hero />
       <Fame />
@@ -28,8 +44,8 @@ const App = () => {
       <Magic />
       <JoinUs />
       <Footer />
-    </div >
-  )
-}
+    </div>
+  );
+};
 
 export default App;
